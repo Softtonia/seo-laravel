@@ -1,0 +1,22 @@
+{
+    "name": "seo-plugins/laravel-seo",
+    "description": "SEO tools for Laravel",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "SEO_Plugins\\LaravelSEO\\": "packages/SEO_Plugins/LaravelSEO/src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SEO_Plugins\\LaravelSEO\\SeoServiceProvider"
+            ],
+            "aliases": {
+                "Seo": "SEO_Plugins\\LaravelSEO\\Facades\\Seo"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
