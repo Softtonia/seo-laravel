@@ -1,0 +1,691 @@
+{
+	"info": {
+		"_postman_id": "c9b24aff-50b9-4171-ba35-df4c017708b9",
+		"name": "SEO-Plugins",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14516707"
+	},
+	"item": [
+		{
+			"name": "SeoSitemaps",
+			"item": [
+				{
+					"name": "seo-sitemaps",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/seo-sitemaps",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"seo-sitemaps"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seo-sitemaps show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/seo-sitemaps",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"seo-sitemaps"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seo-sitemaps Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"url\": \"https://example.com/about\",\r\n  \"frequency\": \"monthly\",\r\n  \"priority\": 0.8,\r\n  \"is_active\": true,\r\n  \"last_modified\": \"2025-04-19T10:30:00\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/seo-sitemaps",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"seo-sitemaps"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seo-sitemaps update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"url\": \"https://example4.com/about\",\r\n  \"frequency\": \"monthly\",\r\n  \"priority\": 0.9,\r\n  \"is_active\": true,\r\n  \"last_modified\": \"2025-04-19T10:30:00\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/seo-sitemaps/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"seo-sitemaps",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seo-sitemaps destroy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/seo-sitemaps/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"seo-sitemaps",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Seo Meta",
+			"item": [
+				{
+					"name": "seo-meta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/seo-meta",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"seo-meta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seo-meta show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/seo-meta/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"seo-meta",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seo-meta post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"route_name\": \"home\",\r\n    \"model_type\": \"App\\\\Models\\\\Post\",\r\n    \"model_id\": 1,\r\n    \"meta_title\": \"Home Page\",\r\n    \"meta_description\": \"This is the home page description.\",\r\n    \"meta_keywords\": \"home, page, seo\",\r\n    \"canonical_url\": \"https://example.com\",\r\n    \"og_title\": \"Home Page\",\r\n    \"og_description\": \"Open Graph description for home page\",\r\n    \"og_image\": \"https://example.com/og-image.jpg\",\r\n    \"twitter_title\": \"Home Page\",\r\n    \"twitter_description\": \"Twitter description for home page\",\r\n    \"twitter_image\": \"https://example.com/twitter-image.jpg\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/seo-meta",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"seo-meta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seo-meta update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"route_name\": \"home\",\r\n    \"model_type\": \"App\\\\Models\\\\Post\",\r\n    \"model_id\": 1,\r\n    \"meta_title\": \"Home Page\",\r\n    \"meta_description\": \"This is the home page description.\",\r\n    \"meta_keywords\": \"home, page, seo\",\r\n    \"canonical_url\": \"https://example.com\",\r\n    \"og_title\": \"Home Page\",\r\n    \"og_description\": \"Open Graph description for home page\",\r\n    \"og_image\": \"https://example.com/og-image.jpg\",\r\n    \"twitter_title\": \"Home Page\",\r\n    \"twitter_description\": \"Twitter description for home page\",\r\n    \"twitter_image\": \"https://example.com/twitter-image.jpg\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/seo-meta/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"seo-meta",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seo-meta destroy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/seo-meta/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"seo-meta",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SeoRobots",
+			"item": [
+				{
+					"name": "seo-robots",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "seo-robots show",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "seo-robots post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_agent\": \"*\",\r\n    \"disallow\": \"/admin, /login\",\r\n    \"allow\": \"/public\",\r\n    \"sitemap_url\": \"https://example4.com/sitemap.xml\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/seo-robots",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"seo-robots"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seo-robots update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_agent\": \"*\",\r\n    \"disallow\": \"/admin, /login\",\r\n    \"allow\": \"/public\",\r\n    \"sitemap_url\": \"https://example.com/sitemap10.xml\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/seo-robots/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"seo-robots",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seo-robots destroy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/seo-robots/4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"seo-robots",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Seo Schema Markup",
+			"item": [
+				{
+					"name": "seo-schema-markup",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/seo-schema-markup",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"seo-schema-markup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seo-schema-markup show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/seo-schema-markup/{id}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"seo-schema-markup",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seo-schema-markup post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/seo-schema-markup/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"seo-schema-markup",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seo-schema-markup update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"model_type\": \"Page3\",\r\n  \"model_id\": 5,\r\n  \"schema_type\": \"Article3\",\r\n  \"schema_json\": {\r\n    \"@context\": \"https://schema.org\",\r\n    \"@type\": \"Article\",\r\n    \"headline\": \"SEO in Laravel\",\r\n    \"author\": {\r\n      \"@type\": \"Person\",\r\n      \"name\": \"Md Faiyyaj\"\r\n    }\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/seo-schema-markup/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"seo-schema-markup",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seo-schema-markup destroy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"model_type\": \"Page3\",\r\n  \"model_id\": 5,\r\n  \"schema_type\": \"Article3\",\r\n  \"schema_json\": {\r\n    \"@context\": \"https://schema.org\",\r\n    \"@type\": \"Article\",\r\n    \"headline\": \"SEO in Laravel\",\r\n    \"author\": {\r\n      \"@type\": \"Person\",\r\n      \"name\": \"Md Faiyyaj\"\r\n    }\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/seo-schema-markup/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"seo-schema-markup",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SeoSettings",
+			"item": [
+				{
+					"name": "seo-settings",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "seo-settings show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/seo-settings/{}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"seo-settings",
+								"{}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "se-settings Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/seo-settings",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"seo-settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "se-settings Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/seo-settings",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"seo-settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seo-settings destroy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/seo-settings/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"seo-settings",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "seo meta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"route_name\": \"home\",\r\n    \"model_type\": \"App\\\\Models\\\\Post\",\r\n    \"model_id\": 1,\r\n    \"meta_title\": \"Home Page\",\r\n    \"meta_description\": \"This is the home page description.\",\r\n    \"meta_keywords\": \"home, page, seo\",\r\n    \"canonical_url\": \"https://example.com\",\r\n    \"og_title\": \"Home Page\",\r\n    \"og_description\": \"Open Graph description for home page\",\r\n    \"og_image\": \"https://example.com/og-image.jpg\",\r\n    \"twitter_title\": \"Home Page\",\r\n    \"twitter_description\": \"Twitter description for home page\",\r\n    \"twitter_image\": \"https://example.com/twitter-image.jpg\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/seo-meta",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"seo-meta"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -3,6 +3,8 @@
 namespace SEO_Plugins\LaravelSEO;
 
 use Illuminate\Support\ServiceProvider;
+use SEO_Plugins\LaravelSEO\Console\SeoPluginUninstallCommand;
+use SEO_Plugins\LaravelSEO\Console\SeoPluginUpdateCommand;
 use SEO_Plugins\LaravelSEO\SeoManager;
 use SEO_Plugins\LaravelSEO\Console\SeoPluginInstallCommand;// Ensure this points to the correct path
 
@@ -19,6 +21,8 @@ class SeoServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
         $this->commands([
             SeoPluginInstallCommand::class,
+            SeoPluginUninstallCommand::class,
+            SeoPluginUpdateCommand::class,
         ]);
         }
     }
@@ -43,8 +47,11 @@ class SeoServiceProvider extends ServiceProvider
         // ], 'migrations');
 
         // Publish assets
-        $this->publishes([
-            __DIR__ . '/../../public' => public_path('vendor/seo'),
-        ], 'assets');
+        $assetPath = __DIR__ . '/../../public';
+        if (is_dir($assetPath)) {
+            $this->publishes([
+                $assetPath => public_path('vendor/seo'),
+            ], 'assets');
+        }
     }
 }
