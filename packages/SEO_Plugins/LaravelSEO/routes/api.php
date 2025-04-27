@@ -9,6 +9,7 @@ use SEO_Plugins\LaravelSEO\Models\SeoRobot;
 
 
 
+Route::middleware(['seo.access'])->group(function () {
 
 Route::prefix('api')->group(function () {
 
@@ -66,3 +67,4 @@ Route::prefix('api')->group(function () {
 
 });
 
+});

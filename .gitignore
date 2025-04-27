@@ -1,3 +1,10 @@
+# Ignore everything by default
+/*
+
+# Except package folder
+!/packages
+
+# Ignore these specific Laravel and other common folders
 /.phpunit.cache
 /node_modules
 /public/build

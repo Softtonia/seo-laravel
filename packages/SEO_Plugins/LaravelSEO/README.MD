@@ -62,6 +62,20 @@ In your Laravel project’s `composer.json` file, add the following:
 }
 ```
 
+``````
+#### Model Integration (Post, Page, etc.)
+
+To associate SEO metadata with any model (like Post, Page, or Product), use the built-in seoMeta() polymorphic relationship provided by this plugin.
+
+In your model (e.g., Post.php or Page.php), add the following method:
+
+public function seoMeta()
+    {
+        return $this->morphOne(\SEO_Plugins\LaravelSEO\Models\SeoMeta::class, 'seoable', 'model_type', 'model_id');
+    }
+
+``````
+
 ---
 
 ### 3. Run Composer Update

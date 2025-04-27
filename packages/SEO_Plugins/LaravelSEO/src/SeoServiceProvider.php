@@ -3,10 +3,16 @@
 namespace SEO_Plugins\LaravelSEO;
 
 use Illuminate\Support\ServiceProvider;
+use SEO_Plugins\LaravelSEO\Console\GenerateSeoMetaCommand;
 use SEO_Plugins\LaravelSEO\Console\SeoPluginUninstallCommand;
 use SEO_Plugins\LaravelSEO\Console\SeoPluginUpdateCommand;
+use SEO_Plugins\LaravelSEO\Http\Middleware\SeoAccessMiddleware;
 use SEO_Plugins\LaravelSEO\SeoManager;
 use SEO_Plugins\LaravelSEO\Console\SeoPluginInstallCommand;// Ensure this points to the correct path
+use SEO_Plugins\LaravelSEO\Observers\SeoObserver;
+use App\Models\Post;
+use App\Models\Page;
+use Spatie\Permission\Models\Role;
 
 class SeoServiceProvider extends ServiceProvider
 {
@@ -23,8 +29,15 @@ class SeoServiceProvider extends ServiceProvider
             SeoPluginInstallCommand::class,
             SeoPluginUninstallCommand::class,
             SeoPluginUpdateCommand::class,
+            GenerateSeoMetaCommand::class,
         ]);
         }
+
+
+        // Register middleware alias
+        $this->app['router']->aliasMiddleware('seo.access', SeoAccessMiddleware::class);
+
+
     }
 
     public function boot()
@@ -52,6 +65,33 @@ class SeoServiceProvider extends ServiceProvider
             $this->publishes([
                 $assetPath => public_path('vendor/seo'),
             ], 'assets');
+        }
+
+
+        // Attach observer to all models
+        $models = config('seo.models', []);
+
+        foreach ($models as $model) {
+            if (class_exists($model)) {
+                $model::observe(SeoObserver::class);
+            }
+        }
+
+
+        //  Register default SEO roles
+        $this->registerDefaultRoles();
+
+
+
+    }
+
+
+    protected function registerDefaultRoles()
+    {
+        $roles = ['Super Admin', 'SEO Manager', 'Shop Manager'];
+
+        foreach ($roles as $role) {
+            Role::firstOrCreate(['name' => $role]);
         }
     }
 }
