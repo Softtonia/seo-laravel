@@ -79,19 +79,19 @@ class SeoServiceProvider extends ServiceProvider
 
 
         //  Register default SEO roles
-        $this->registerDefaultRoles();
+        // $this->registerDefaultRoles();
 
 
 
     }
 
 
-    protected function registerDefaultRoles()
-    {
-        $roles = ['Super Admin', 'SEO Manager', 'Shop Manager'];
+    // protected function registerDefaultRoles()
+    // {
+    //     $roles = ['Super Admin', 'SEO Manager', 'Shop Manager'];
 
-        foreach ($roles as $role) {
-            Role::firstOrCreate(['name' => $role]);
-        }
-    }
+    //     foreach ($roles as $role) {
+    //         Role::firstOrCreate(['name' => $role]);
+    //     }
+    // }
 }
