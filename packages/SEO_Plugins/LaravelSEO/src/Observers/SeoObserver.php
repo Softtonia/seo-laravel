@@ -123,6 +123,7 @@ class SeoObserver
         ], [
             'schema_type'  => 'WebPage',
             'schema_json'  => json_encode($schemaData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            'page_url'    => $canonicalUrl,
         ]);
     }
 }

@@ -33,6 +33,8 @@ class SeoSchemaMarkupController extends Controller
                 'model_id' => 'required|integer',
                 'schema_type' => 'required|string',
                 'schema_json' => 'required|array', // Must be an array
+                'page_url' => 'required|string|unique:seo_schema_markup,page_url',
+                'is_active' => 'boolean',
             ]);
 
             $seoSchema = SeoSchemaMarkup::create([
@@ -40,6 +42,8 @@ class SeoSchemaMarkupController extends Controller
                 'model_id' => $request->model_id,
                 'schema_type' => $request->schema_type,
                 'schema_json' => json_encode($request->schema_json), // Encode to JSON string
+                'page_url' => $request->page_url,
+                'is_active' => $request->is_active,
             ]);
 
             return response()->json(['message' => 'Schema created successfully', 'data' => $seoSchema], 201);
@@ -70,6 +74,8 @@ class SeoSchemaMarkupController extends Controller
                 'model_id' => 'nullable|integer',
                 'schema_type' => 'nullable|string',
                 'schema_json' => 'nullable|array', // Accept as array
+                'page_url' => 'required|string|unique:seo_schema_markup,page_url',
+                'is_active' => 'boolean',
             ]);
 
             $schema->update([
@@ -77,6 +83,8 @@ class SeoSchemaMarkupController extends Controller
                 'model_id' => $request->input('model_id', $schema->model_id),
                 'schema_type' => $request->input('schema_type', $schema->schema_type),
                 'schema_json' => $request->has('schema_json') ? json_encode($request->schema_json) : $schema->schema_json,
+                'page_url' => $request->input('page_url', $schema->page_url),
+                'is_active' => $request->input('is_active', $schema->is_active),
             ]);
 
             return response()->json(['message' => 'Schema updated successfully', 'data' => $schema], 200);
@@ -96,6 +104,24 @@ class SeoSchemaMarkupController extends Controller
         } catch (Exception $e) {
             return response()->json(['message' => 'Failed to delete schema', 'error' => $e->getMessage()], 500);
         }
+    }
+
+
+    public function getByUrl(Request $request)
+    {
+        $url = $request->query('url');
+
+        $schema = SeoSchemaMarkup::where('page_url', $url)
+            ->where('is_active', true)
+            ->first();
+
+        if (!$schema) {
+            return response()->json(['message' => 'No schema found'], 404);
+        }
+
+        return response()->json([
+            'schema_json' => json_decode($schema->schema_json, true)
+        ]);
     }
 }
 

@@ -8,4 +8,8 @@ class SeoSitemap extends Model
 {
     protected $table = 'seo_sitemaps';
     protected $guarded = [];
+
+    protected $casts = [
+        'last_modified' => 'datetime',
+    ];
 }

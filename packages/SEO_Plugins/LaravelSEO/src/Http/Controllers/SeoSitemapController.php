@@ -8,6 +8,23 @@ use SEO_Plugins\LaravelSEO\Models\SeoSitemap;
 
 class SeoSitemapController extends Controller
 {
+
+    public function getSitemapData()
+    {
+        $sitemaps = SeoSitemap::where('is_active', true)->get();
+
+        return response()->json([
+            'sitemaps' => $sitemaps->map(function ($sitemap) {
+                return [
+                    'loc' => url($sitemap->url),
+                    'lastmod' => optional($sitemap->last_modified)->toW3cString(),
+                    'changefreq' => $sitemap->frequency,
+                    'priority' => $sitemap->priority,
+                ];
+            }),
+        ]);
+    }
+
     public function index()
     {
         try {
