@@ -9,11 +9,12 @@ use SEO_Plugins\LaravelSEO\Models\SeoRobot;
 use SEO_Plugins\LaravelSEO\Models\SeoSitemap;
 
 
+Route::get('/sitemap.xml', [SeoSitemapController::class, 'generateSitemaps']);
 
 Route::get('/sitemap-data', [SeoSitemapController::class, 'getSitemapData']);
 Route::get('/schema-by-url', [SeoSchemaMarkupController::class, 'getByUrl']);
 
-Route::middleware(['seo.access'])->group(function () {
+Route::middleware(['auth:sanctum', 'seo.access'])->group(function () {
 
 Route::prefix('api')->group(function () {
 
@@ -62,10 +63,12 @@ Route::prefix('api')->group(function () {
     Route::prefix('/seo-settings')->group(function(){
         Route::controller(SeoSettingController::class)->group(function(){
             Route::get('/','index');
+            Route::post('/save', 'storeOrUpdate');
             Route::get('/{id}', 'show');
             Route::post('/', 'store');
             Route::post('/{id}', 'update');
             Route::delete('/{id}', 'destroy');
+
         });
     });
 

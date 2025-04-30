@@ -39,6 +39,7 @@ namespace SEO_Plugins\LaravelSEO\Observers;
 use SEO_Plugins\LaravelSEO\Models\SeoMeta;
 use SEO_Plugins\LaravelSEO\Models\SeoSchemaMarkup;
 use Illuminate\Support\Str;
+use SEO_Plugins\LaravelSEO\Models\SeoSitemap;
 
 class SeoObserver
 {
@@ -46,12 +47,14 @@ class SeoObserver
     {
         $this->createOrUpdateSeoMeta($model);
         $this->createOrUpdateSchemaMarkup($model);
+        $this->createOrUpdateSitemap($model);
     }
 
     public function updated($model)
     {
         $this->createOrUpdateSeoMeta($model);
         $this->createOrUpdateSchemaMarkup($model);
+        $this->createOrUpdateSitemap($model);
     }
 
     protected function createOrUpdateSeoMeta($model)
@@ -124,6 +127,23 @@ class SeoObserver
             'schema_type'  => 'WebPage',
             'schema_json'  => json_encode($schemaData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             'page_url'    => $canonicalUrl,
+        ]);
+    }
+
+
+    protected function createOrUpdateSitemap($model)
+    {
+        $title = $model->title ?? $model->name ?? 'Page';
+        $slug = $model->slug ?? Str::slug($title);
+        $url = config('app.url') . '/' . $slug;
+
+        SeoSitemap::updateOrCreate([
+            'url' => $url,
+        ], [
+            'frequency' => 'weekly',
+            'priority' => 0.8,
+            'is_active' => true,
+            'last_modified' => now(),
         ]);
     }
 }

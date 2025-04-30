@@ -140,4 +140,38 @@ class SeoSitemapController extends Controller
         }
     }
 
+
+    public function generateSitemaps()
+    {
+        //  URLs
+        $urls = SeoSitemap::where('is_active', true)
+            ->orderBy('priority', 'desc')
+            ->get();
+
+        // XML Generate
+        $xml = '<?xml version="1.0" encoding="UTF-8"?>';
+        $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+
+        foreach ($urls as $url) {
+            $xml .= '<url>';
+            $xml .= '<loc>' . htmlspecialchars($url->url) . '</loc>';
+            $xml .= '<lastmod>' . $this->formatDate($url->last_modified ?? $url->updated_at) . '</lastmod>';
+            $xml .= '<changefreq>' . $url->frequency . '</changefreq>';
+            $xml .= '<priority>' . $url->priority . '</priority>';
+            $xml .= '</url>';
+        }
+
+        $xml .= '</urlset>';
+
+        // XML Response
+        return response($xml, 200, [
+            'Content-Type' => 'application/xml'
+        ]);
+    }
+
+    protected function formatDate($date)
+    {
+        return $date->format('Y-m-d\TH:i:sP');
+    }
+
 }

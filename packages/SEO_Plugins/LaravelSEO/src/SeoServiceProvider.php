@@ -7,6 +7,12 @@ use SEO_Plugins\LaravelSEO\Console\GenerateSeoMetaCommand;
 use SEO_Plugins\LaravelSEO\Console\SeoPluginUninstallCommand;
 use SEO_Plugins\LaravelSEO\Console\SeoPluginUpdateCommand;
 use SEO_Plugins\LaravelSEO\Http\Middleware\SeoAccessMiddleware;
+use SEO_Plugins\LaravelSEO\Models\SeoMeta;
+use SEO_Plugins\LaravelSEO\Models\SeoRobot;
+use SEO_Plugins\LaravelSEO\Models\SeoSchemaMarkup;
+use SEO_Plugins\LaravelSEO\Models\SeoSetting;
+use SEO_Plugins\LaravelSEO\Models\SeoSitemap;
+use SEO_Plugins\LaravelSEO\Observers\SeoAuditObserver;
 use SEO_Plugins\LaravelSEO\SeoManager;
 use SEO_Plugins\LaravelSEO\Console\SeoPluginInstallCommand;// Ensure this points to the correct path
 use SEO_Plugins\LaravelSEO\Observers\SeoObserver;
@@ -76,6 +82,14 @@ class SeoServiceProvider extends ServiceProvider
                 $model::observe(SeoObserver::class);
             }
         }
+
+
+
+        SeoMeta::observe(SeoAuditObserver::class);
+        SeoRobot::observe(SeoAuditObserver::class);
+        SeoSchemaMarkup::observe(SeoAuditObserver::class);
+        SeoSetting::observe(SeoAuditObserver::class);
+        SeoSitemap::observe(SeoAuditObserver::class);
 
 
         //  Register default SEO roles

@@ -11,7 +11,7 @@ class SeoSettingController extends Controller
     public function index()
     {
         try {
-            $settings = SeoSetting::all();
+            $settings = SeoSetting::all()->pluck('value', 'key');
             return response()->json(['message' => 'All settings fetched', 'data' => $settings]);
         } catch (Exception $e) {
             return response()->json(['message' => 'Failed to fetch', 'error' => $e->getMessage()], 500);
@@ -76,6 +76,26 @@ class SeoSettingController extends Controller
             return response()->json(['message' => 'Setting deleted']);
         } catch (Exception $e) {
             return response()->json(['message' => 'Delete failed', 'error' => $e->getMessage()], 500);
+        }
+    }
+
+
+    //  Save or update multiple key-value pairs
+    public function storeOrUpdate(Request $request)
+    {
+        try {
+            $data = $request->all();
+
+            foreach ($data as $key => $value) {
+                SeoSetting::updateOrCreate(
+                    ['key' => $key],
+                    ['value' => $value]
+                );
+            }
+
+            return response()->json(['message' => 'Settings saved/updated successfully']);
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Failed to save settings', 'error' => $e->getMessage()], 500);
         }
     }
 }

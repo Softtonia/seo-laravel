@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('target_model_id');
             $table->text('details')->nullable();
             $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
 
             $table->index(['target_model_type', 'target_model_id'], 'idx_target_model');
         });
